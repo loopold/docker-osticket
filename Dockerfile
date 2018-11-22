@@ -1,5 +1,6 @@
 # Deployment doesn't work on Alpine
 FROM php:7.0-cli AS deployer
+# Try 1.11.0-rc1
 ENV OSTICKET_VERSION=1.10.4
 RUN set -x \
     && apt-get update \
