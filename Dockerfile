@@ -1,7 +1,6 @@
 # Deployment doesn't work on Alpine
 FROM php:7.0-cli AS deployer
-# Try 1.11.0-rc1
-ENV OSTICKET_VERSION=1.10.4
+ENV OSTICKET_VERSION=1.11.1
 RUN set -x \
     && apt-get update \
     && apt-get install -y git-core \
@@ -16,7 +15,7 @@ RUN set -x \
     && chmod -R go= /data/upload/setup_hidden
 
 FROM php:7.0-fpm-alpine
-MAINTAINER Martin Campbell <martin@campbellsoftware.co.uk>
+LABEL maintainer="Piotr Gogolin <piotr@zamiast.com>"
 # environment for osticket
 ENV HOME=/data
 # setup workdir
@@ -62,6 +61,7 @@ RUN set -x && \
     wget -nv -O upload/include/i18n/it.phar http://osticket.com/sites/default/files/download/lang/it.phar && \
     wget -nv -O upload/include/i18n/es_ES.phar http://osticket.com/sites/default/files/download/lang/es_ES.phar && \
     wget -nv -O upload/include/i18n/de.phar http://osticket.com/sites/default/files/download/lang/de.phar && \
+    wget -nv -O upload/include/i18n/pl.phar http://osticket.com/sites/default/files/download/lang/pl.phar && \
     mv upload/include/i18n upload/include/i18n.dist && \
     # Download LDAP plugin
     wget -nv -O upload/include/plugins/auth-ldap.phar http://osticket.com/sites/default/files/download/plugin/auth-ldap.phar && \
