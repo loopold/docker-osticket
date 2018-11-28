@@ -62,7 +62,7 @@ RUN set -x && \
     # wget -nv -O upload/include/i18n/es_ES.phar http://osticket.com/sites/default/files/download/lang/es_ES.phar && \
     # wget -nv -O upload/include/i18n/de.phar http://osticket.com/sites/default/files/download/lang/de.phar && \
     # wget -nv --no-check-certificate -O upload/include/i18n/pl.phar http://osticket.com/sites/default/files/download/lang/pl.phar && \
-    mv upload/include/i18n upload/include/i18n.dist && \
+    # mv upload/include/i18n upload/include/i18n.dist && \
     # Download LDAP plugin -- see below
     # wget -nv -O upload/include/plugins/auth-ldap.phar http://osticket.com/sites/default/files/download/plugin/auth-ldap.phar && \
     # Create msmtp log
@@ -74,6 +74,7 @@ COPY files/ /
 # Language packs and plugins downloaded separately and put into proper dirs
 COPY i18n/ /data/upload/include/i18n/
 COPY plugins/ /data/upload/include/plugins/
+RUN ln -s /data/upload/include/i18n/ /data/upload/include/i18n.dist
 VOLUME ["/data/upload/include/plugins","/data/upload/include/i18n","/var/log/nginx"]
 EXPOSE 80
 CMD ["/data/bin/start.sh"]
