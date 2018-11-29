@@ -3,7 +3,7 @@ docker-osticket
 
 # Introduction
 
-Docker image for running version 1.11.0-rc1 of [OSTicket](http://osticket.com/).
+Docker image for running version 1.11.0-rc1 of [osTicket](http://osticket.com/).
 
 This image has been created from the [campbellsoftwaresolutions/osticket](https://hub.docker.com/r/campbellsoftwaresolutions/osticket/) image by [Martin Campbell](mailto:martin@campbellsoftware.co.uk) who created his image from the original docker-osticket image by [Petter A. Helset](mailto:petter@helset.eu).
 
@@ -38,7 +38,7 @@ docker run --name osticket_mysql -d -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_USER=
 Now run this image and link the MySQL container.
 
 ```bash
-docker run --name osticket -d --link osticket_mysql:mysql -p 8080:80 loopold/osticket:1.11.0-rc1
+docker run --name osticket -d --link osticket_mysql:mysql -p 8080:80 loopold/docker-osticket:1.11.0-rc1
 ```
 
 Wait for the installation to complete then browse to your OSTicket staff control panel at `http://localhost:8080/scp/`. Login with default admin user & password:
