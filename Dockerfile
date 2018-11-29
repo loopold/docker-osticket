@@ -1,10 +1,10 @@
 # Deployment doesn't work on Alpine
 FROM php:7.0-cli AS deployer
-ENV OSTICKET_VERSION=1.11.x
+ENV OSTICKET_VERSION=1.11.0-rc1
 RUN set -x \
     && apt-get update \
     && apt-get install -y git-core \
-    && git clone -b ${OSTICKET_VERSION} --depth 1 https://github.com/osTicket/osTicket.git \
+    && git clone -b v${OSTICKET_VERSION} --depth 1 https://github.com/osTicket/osTicket.git \
     && cd osTicket \
     && php manage.php deploy -sv /data/upload \
     # www-data is uid:gid 82:82 in php:7.0-fpm-alpine
@@ -15,7 +15,7 @@ RUN set -x \
     && chmod -R go= /data/upload/setup_hidden
 
 FROM php:7.0-fpm-alpine
-LABEL maintainer="Piotr Gogolin <piotr@zamiast.com>"
+LABEL maintainer="Martin Campbell <martin@campbellsoftware.co.uk>"
 # environment for osticket
 ENV HOME=/data
 # setup workdir
@@ -50,8 +50,10 @@ RUN set -x && \
         pcre-dev && \
     docker-php-ext-install gd curl ldap mysqli sockets gettext mbstring xml intl opcache && \
     docker-php-ext-configure imap --with-imap-ssl && \
-    docker-php-ext-install imap && \
-    pecl install apcu && docker-php-ext-enable apcu && \
+    docker-php-ext-install imap
+RUN pecl install apcu && docker-php-ext-enable apcu && \
+    pecl install apcu_bc && \
+    docker-php-ext-enable apc && \
     apk del .build-deps && \
     rm -rf /var/cache/apk/* && \
     # Download languages packs -- see below
