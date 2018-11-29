@@ -5,7 +5,7 @@ docker-osticket
 
 Docker image for running version 1.11.0-rc1 of [OSTicket](http://osticket.com/).
 
-This image has been created from the campbellsoftwaresolutions/osticket image by [Martin Campbell](mailto:martin@campbellsoftware.co.uk) who created his image from the original docker-osticket image by [Petter A. Helset](mailto:petter@helset.eu).
+This image has been created from the [campbellsoftwaresolutions/osticket](https://hub.docker.com/r/campbellsoftwaresolutions/osticket/) image by [Martin Campbell](mailto:martin@campbellsoftware.co.uk) who created his image from the original docker-osticket image by [Petter A. Helset](mailto:petter@helset.eu).
 
 This is an ordinary fork with some modifications that can be seen on [GitHub](https://github.com/loopold/docker-osticket). Only to run and test osTicket v1.11.0-rc1 as a container.
 
