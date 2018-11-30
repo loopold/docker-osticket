@@ -11,6 +11,10 @@ This is an ordinary fork with some modifications that can be seen on [GitHub](ht
 
 Language packs and plugins should be downloaded separately and put into proper dirs (`i18n` and `plugins`).
 
+Below info from Martin Campbell's README file (except links in docker commands).
+
+---
+
 It has a few modifications:
 
   * Documentation added, hurray!
