@@ -1,6 +1,6 @@
 # Deployment doesn't work on Alpine
 FROM php:7.0-cli AS deployer
-ENV OSTICKET_VERSION=1.11.0-rc1
+ENV OSTICKET_VERSION=1.11
 RUN set -x \
     && apt-get update \
     && apt-get install -y git-core \
@@ -73,7 +73,7 @@ RUN pecl install apcu && docker-php-ext-enable apcu && \
     # File upload permissions
     chown nginx:www-data /var/tmp/nginx && chmod g+rx /var/tmp/nginx
 COPY files/ /
-# Language packs and plugins downloaded separately and put into proper dirs
+# Language packs and plugins downloaded separately and put into proper dirs - individual translations.
 COPY i18n/ /data/upload/include/i18n/
 COPY plugins/ /data/upload/include/plugins/
 RUN ln -s /data/upload/include/i18n/ /data/upload/include/i18n.dist
